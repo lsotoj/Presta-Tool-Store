@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
 
@@ -26,7 +26,41 @@ export const ShoppingCartProvider = ({ children }) => {
     // Shopping Cart * Order
     const [order, setOrder] = useState([])
 
+    // Get Products
+    const [items, setItems] = useState(null)
+    const [filteredItems, setFilteredItems] = useState([])
 
+    console.log('Items=>', items);
+    // Get products by title
+    const [searchByTitle, setSearchByTitle] = useState()
+
+    // Electronics category
+    const [elecronicsCategory, setElectronicsCategory] = useState([])
+
+    // Clothes category
+    const [clothesCategory, setClothesCategory] = useState([])
+
+    // Shoes category
+    const [shoesCategory, setShoesCategory] = useState([])
+
+    // Furniture category
+    const [furnitureCategory, setFurnitureCategory] = useState([])
+
+    useEffect(() => {
+        fetch("https://api.escuelajs.co/api/v1/products")
+            .then((response) => response.json())
+            .then((data) => setItems(data));
+    }, []);
+
+    const filteredSearch = (items, searchByTitle) => items?.filter((item) => item?.title?.toLowerCase().includes(searchByTitle?.toLowerCase()))
+
+    useEffect(() => {
+        if (searchByTitle) setFilteredItems(filteredSearch(items, searchByTitle))
+    }, [searchByTitle, items])
+
+    useEffect(() => {
+
+    }, [items])
     return (
         <ShoppingCartContext.Provider
             value={{
@@ -43,7 +77,13 @@ export const ShoppingCartProvider = ({ children }) => {
                 openCheckoutSideMenu,
                 closeCheckoutSideMenu,
                 order,
-                setOrder
+                setOrder,
+                items,
+                setItems,
+                searchByTitle,
+                setSearchByTitle,
+                filteredItems,
+                setFilteredItems
             }}>
             {children}
         </ShoppingCartContext.Provider>

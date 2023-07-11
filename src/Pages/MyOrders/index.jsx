@@ -9,9 +9,8 @@ function MyOrders() {
   const context = useContext(ShoppingCartContext)
   return (
     <Layout>
-
-      <div className='flex items-center justify-center relative'>
-        <h1>My Orders</h1>
+      <div className='flex items-center justify-center relative mb-4'>
+        <h1 className=' font-medium text-lg '>My Orders</h1>
       </div>
       {context.order?.map((order, index) =>
         <Link key={index} to={`/my-orders/${index}`}>
@@ -21,7 +20,6 @@ function MyOrders() {
           />
         </Link>
       )}
-
     </Layout>
   );
 }

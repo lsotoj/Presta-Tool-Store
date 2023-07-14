@@ -17,65 +17,45 @@ const NavBar = () => {
                 <li>
                     <NavLink
                         to="/"
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
+                        onClick={() => context.setSearchByCategory()}
+                        className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                         All
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to="/manual-tools"
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
+                        to="/electronics"
+                        onClick={() => context.setSearchByCategory('electronics')}
+                        className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                        {" "}
-                        Manual Tools
+                        Electronics
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to="/electric-tools"
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
+                        to="/furnitures"
+                        onClick={() => context.setSearchByCategory('furniture')}
+                        className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                        {" "}
-                        Electric Tools
+                        Furnitures
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to="/pneumatic-tools"
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
+                        to="/clothes"
+                        onClick={() => context.setSearchByCategory('clothes')}
+                        className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                        {" "}
-                        Pneumatic Tools
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/measuring-tools"
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        {" "}
-                        Measuring Tools
+                        Clothes
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to="/others"
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
+                        onClick={() => context.setSearchByCategory('others')}
+                        className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                        {" "}
                         Others
                     </NavLink>
                 </li>
@@ -126,10 +106,10 @@ const NavBar = () => {
                     </NavLink>
                 </li>
                 <li className="flex items-center">
-                    <ShoppingBagIcon className="w-6 h-6" /> 
+                    <ShoppingBagIcon className="w-6 h-6" />
                     <div>
 
-                    {context.count}
+                        {context.count}
                     </div>
                 </li>
             </ul>

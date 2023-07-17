@@ -31,10 +31,10 @@ export const ShoppingCartProvider = ({ children }) => {
     const [filteredItems, setFilteredItems] = useState([])
 
     // Get products by title
-    const [searchByTitle, setSearchByTitle] = useState('')
+    const [searchByTitle, setSearchByTitle] = useState()
 
     // Get products by category
-    const [searchByCategory, setSearchByCategory] = useState('')
+    const [searchByCategory, setSearchByCategory] = useState()
 
     useEffect(() => {
         fetch("https://api.escuelajs.co/api/v1/products")

@@ -3,6 +3,7 @@ import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
+import ShoppingCart from "../ShoppingCart";
 
 const NavBar = () => {
     const activeStyle = "underline underline-offset-4";
@@ -32,7 +33,7 @@ const NavBar = () => {
         if (hasUserAnAccount && !isUserSignOut) {
             return (
                 <>
-                    <li className="text-black/60">customer-service@lend.com</li>
+                    <li className="text-black/60">{parsedAccount?.email}</li>
                     <li>
                         <NavLink
                             to="/my-orders"
@@ -76,14 +77,14 @@ const NavBar = () => {
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                         onClick={() => handleSignOut()}
                     >
-                        Sign Out
+                        Sign In
                     </NavLink>
                 </li>
             )
         }
     }
     return (
-        <nav className="flex justify-between items-center fixed top-0 z-10 w-full py-5 px-8 text-sm font-light">
+        <nav className="flex justify-between items-center fixed top-0 z-10 w-full py-5 px-8 text-sm font-light bg-white">
             <ul className="flex items-center gap-3">
                 <li className="font-semibold text-lg">
                     <NavLink to={isUserSignOut ? '/sign-in' : '/'}>Lend</NavLink>
@@ -138,10 +139,7 @@ const NavBar = () => {
             <ul className="flex items-center gap-3">
                 {renderView()}
                 <li className="flex items-center">
-                    <ShoppingBagIcon className="w-6 h-6" />
-                    <div>
-                        {context.cartProducts.length}
-                    </div>
+                    <ShoppingCart />
                 </li>
             </ul>
         </nav>
